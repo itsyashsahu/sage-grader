@@ -1,7 +1,8 @@
 require('dotenv').config();
 const prisma = require("./prisma/prismaClient");
-const studentRouter = require("./routes/studentsWithoutMentor");
-const allStudents = require("./routes/getAllStudents");
+const studentRouter = require("./routes/student");
+const mentorRouter = require("./routes/mentor");
+const marksRouter = require("./routes/marks");
 
 const express = require("express");
 const app = express();
@@ -16,8 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api", studentRouter);
-app.use("/api", allStudents)
+app.use("/api/student/", studentRouter);
 
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
